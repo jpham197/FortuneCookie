@@ -13,6 +13,9 @@ public class Client {
 		fortunes.add("An eye for an eye makes the whole world blind");
 		fortunes.add("If not poorly, why decide at all?");
 		fortunes.add("That's some other worldly shit.");
+		fortunes.add("Let your choices reflect your hopes, not your fears.");
+		fortunes.add("Impossible? More like I'm possible.");
+
 		String fortGen = "";
 		int randFort = (int)(Math.random() * fortunes.size());
 		//promps user
@@ -26,7 +29,7 @@ public class Client {
 		// //debugger to print out randFort value
 		// System.out.println((int)(Math.random() * fortunes.size() + 1));
 
-		while (fortGen.equals("Y")) {
+		while (fortGen.equals("Y") || fortGen.equals("y")) {
 			System.out.println(fortunes.get(randFort));
 			System.out.println("Do you want another fortune? Y/N");
 			fortGen = user.nextLine();
