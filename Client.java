@@ -8,16 +8,19 @@ public class Client {
 
 		//variables
 		ArrayList<String> fortunes = new ArrayList<String>();
-		fortunes.add("Horse kick tree.");
-		fortunes.add("Stand for something, because he who stands for nothing, falls for everything.");
-		fortunes.add("An eye for an eye makes the whole world blind");
-		fortunes.add("If not poorly, why decide at all?");
-		fortunes.add("That's some other worldly shit.");
-		fortunes.add("Let your choices reflect your hopes, not your fears.");
-		fortunes.add("Impossible? More like I'm possible.");
+		fortunes.add("Fortune 1");
+		fortunes.add("Fortune 2");
+		fortunes.add("Fortune 3");
+		fortunes.add("Fortune 4");
+		fortunes.add("Fortune 5");
+		fortunes.add("Fortune 6");
+		fortunes.add("Fortune 7");
+		fortunes.add("Fortune 8");
+		fortunes.add("Fortune 9");
+		fortunes.add("Fortune 10");
 
 		String fortGen = "";
-		int randFort = (int)(Math.random() * fortunes.size());
+
 		//promps user
 		System.out.println("Do you want a fortune? Enter Y/N");
 		fortGen = user.nextLine();
@@ -29,16 +32,46 @@ public class Client {
 		// //debugger to print out randFort value
 		// System.out.println((int)(Math.random() * fortunes.size() + 1));
 
+		GenerateFortunes(user, fortunes, fortGen);
+		user.close();
+	}
+
+	public static void GenerateFortunes(Scanner user, ArrayList<String> list, String fortGen) {
+		boolean init = true; //variable to indicate whether the fortune outputted is the first since opening the program, to be later used to avoid repeating fortunes
+		int randFortInit = (int)(Math.random() * list.size()); //random variable to pick a fortune randomly from array
+		int randFort = (int)(Math.random() * list.size());
+
 		while (fortGen.equals("Y") || fortGen.equals("y")) {
-			System.out.println(fortunes.get(randFort));
-			System.out.println("Do you want another fortune? Y/N");
-			fortGen = user.nextLine();
-			randFort = (int)(Math.random() * fortunes.size()); //refresh value of randFort to generate a new fortune
-
+			if (init == true) {
+				System.out.println("Here's your first fortune: " + list.get(randFortInit));
+				System.out.println("Want another fortune? Enter Y/N");
+				init = false;
+				fortGen = user.nextLine();
+			} else {
+				System.out.println(list.get(randFort));
+				randFort = (int)(Math.random() * list.size());
+				System.out.println("Want another fortune? Enter Y/N");
+				fortGen = user.nextLine();
+			}
 		}
-
-
-
 	}
 
 }
+
+
+
+/*
+
+while (fortGen.equals("Y") || fortGen.equals("y")) { //while the user continues to enter Y or y the loop will generate another fortune
+	if (init = true) {
+		System.out.println(fortunes.get(randFortInit));
+		System.out.println("Do you want another fortune? Y/N");
+		fortGen = user.nextLine();
+		init = false;
+	} else {
+		fortGen = user.nextLine();
+		int randFort = (int)(Math.random() * fortunes.size());
+	}
+}
+
+*/
