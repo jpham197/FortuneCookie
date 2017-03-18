@@ -37,24 +37,25 @@ public class Client {
 	}
 
 	public static void GenerateFortunes(Scanner user, ArrayList<String> list, String fortGen) {
-		boolean init = true; //variable to indicate whether the fortune outputted is the first since opening the program, to be later used to avoid repeating fortunes
-		int randFortInit = (int)(Math.random() * list.size()); //random variable to pick a fortune randomly from array
-		int randFort = (int)(Math.random() * list.size());
+		boolean switcher = true; //variable used to switch back and forth between randFortA and randFortB to avoid generating two identical fortunes in a row
+		int randFortA = (int)(Math.random() * list.size()); //random variable to pick a fortune randomly from array
+		int randFortB = (int)(Math.random() * list.size());
 
 		while (fortGen.equals("Y") || fortGen.equals("y")) {
-			if (init == true) {
-				System.out.println("Here's your first fortune: " + list.get(randFortInit));
+			if (switcher == true) {
+				System.out.println("Here's your first fortune: " + list.get(randFortA));
+				randFortA = (int)(Math.random() * list.size());
 				System.out.println("Want another fortune? Enter Y/N");
-				init = false;
+				switcher = false;
 				fortGen = user.nextLine();
 			} else {
-				System.out.println(list.get(randFort));
-				randFort = (int)(Math.random() * list.size());
+				System.out.println(list.get(randFortB));
+				randFortB = (int)(Math.random() * list.size());
 
-				if (randFort == randFortInit) {// resets randFort if it equals the initial randFort value
-					randFort = (int)(Math.random() * list.size());
+				if (randFortB == randFortA) {// resets randFortB if it equals the initial randFortB value
+					randFortB = (int)(Math.random() * list.size());
 				}
-
+				switcher = true;
 				System.out.println("Want another fortune? Enter Y/N");
 				fortGen = user.nextLine();
 			}
