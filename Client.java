@@ -50,6 +50,11 @@ public class Client {
 			} else {
 				System.out.println(list.get(randFort));
 				randFort = (int)(Math.random() * list.size());
+
+				if (randFort == randFortInit) {// resets randFort if it equals the initial randFort value
+					randFort = (int)(Math.random() * list.size());
+				}
+
 				System.out.println("Want another fortune? Enter Y/N");
 				fortGen = user.nextLine();
 			}
